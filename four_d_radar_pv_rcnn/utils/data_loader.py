@@ -42,11 +42,20 @@ def load_labels(label_path, file_name):
     if os.path.exists(label_file_path):
         with open(label_file_path, 'r') as file:
             for line in file:
+                # datawrapper = DataWrapper(line.strip().split(' '))
                 labels.append(line.strip().split(' '))
         print(f"Loaded {len(labels)} labels for {file_name}")  # Print number of labels loaded for each file
     else:
         print(f"Label file {label_file_path} not found.")
     return labels
+
+
+class DataWrapper:
+    def __int__(self, data_list: list):
+        self._data_list = data_list
+
+    def get_category(self):
+        self._data_list[0]
 
 
 def load_data_from_files(data_path, label_path, files, load_labels_flag=True):
@@ -57,6 +66,7 @@ def load_data_from_files(data_path, label_path, files, load_labels_flag=True):
         file_path = os.path.join(data_path, file_name)
         with open(file_path, 'rb') as f:
             data = f.read()
+            # datawrapper
             num_points = len(data) // 28  # Assuming 7 features x 4 bytes each
             if num_points > 0:
                 try:
