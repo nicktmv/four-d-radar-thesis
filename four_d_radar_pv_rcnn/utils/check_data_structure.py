@@ -24,11 +24,9 @@ def main():
     try:
         with open(file_path, 'rb') as file:
             data = file.read()  # Read the entire file
-
         # Calculate the number of points assuming each point is represented by 28 bytes (7 features x 4 bytes each)
         num_points = len(data) // 28
         remainder = len(data) % 28
-
         # Print results
         print(f"Total data length in bytes: {len(data)}")
         print(f"Number of points calculated: {num_points}")
