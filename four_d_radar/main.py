@@ -1,16 +1,15 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import four_d_radar.utils.data_loader
+import four_d_radar.visualization.vis_frames_and_images
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def main():
+    # Load the dataset
+    data, labels = four_d_radar.utils.data_loader.load_dataset()
+
+    # Initialize the visualizer with the data and labels
+    visualizer = four_d_radar.visualization.vis_frames_and_images.RadarPointCloudVisualizer(data, labels)
+    visualizer.visualize()
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    main()
