@@ -4,7 +4,7 @@
 
 ## Requirements
 
-* [Python 3.10](https://www.python.org/downloads/) - Python is a programming language that lets you work quickly and integrate systems more effectively.
+* [Python 3.11](https://www.python.org/downloads/) - Python is a programming language that lets you work quickly and integrate systems more effectively.
 
 ### IDEs
 
