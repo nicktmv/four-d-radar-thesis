@@ -2,7 +2,7 @@ import open3d as o3d
 import numpy as np
 import struct
 import os
-from four_d_radar.utils.paths import Paths
+from four_d_radar.utils.data_paths import DataPaths
 from four_d_radar.utils.data_loader import load_dataset, load_labels, load_indices, load_data_from_files
 
 
@@ -43,11 +43,11 @@ class RadarPointCloudVisualizer:
 
 
 def main():
-    paths = Paths()  # Make sure the paths.py file is correctly referenced
+    data_paths = DataPaths()
 
     # Load the dataset
     print("Loading training data...")
-    train_data, train_labels = load_dataset(paths.data_path, paths.label_path, paths.train_indices_path,
+    train_data, train_labels = load_dataset(data_paths.data_path, data_paths.label_path, data_paths.train_indices_path,
                                             load_labels_flag=True)
 
     # Initialize the visualizer with the training data

@@ -1,6 +1,7 @@
 # 4d-radar-fyp-thesis
 
 ## Aim
+To explore the theoretical methodology of achieving object detection from raw 4D radar point clouds
 
 ## Requirements
 

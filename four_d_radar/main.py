@@ -1,14 +1,10 @@
-import four_d_radar.utils.data_loader
-import four_d_radar.visualization.vis_frames_and_images
+from four_d_radar.utils.data_loader import main as data_loader_main
 
 
 def main():
-    # Load the dataset
-    data, labels = four_d_radar.utils.data_loader.load_dataset()
-
-    # Initialize the visualizer with the data and labels
-    visualizer = four_d_radar.visualization.vis_frames_and_images.RadarPointCloudVisualizer(data, labels)
-    visualizer.visualize()
+    print("Starting the main function of the project...")
+    data_loader_main()  # This calls the main function of your data loader script
+    print("Main function of the project has finished.")
 
 
 if __name__ == "__main__":

@@ -1,120 +1,186 @@
 import os
-import struct
 import numpy as np
+import struct
+from four_d_radar.utils.data_paths import DataPaths
 
-from four_d_radar.utils.paths import Paths
-
-"""
-This script is designed to load and process 3D point cloud data and associated labels from the VOD dataset. It 
-is structured into several key functions to facilitate this process:
-
-1. `load_indices(indices_path)`: Reads a file containing indices (identifiers for data points or sets) and 
-returns a list of these indices. This function is useful for segregating the dataset into training, validation, 
-and testing sets.
-
-2. `load_labels(label_path, file_name)`: For a given binary data file, this function finds and loads the 
-corresponding label file, which shares the same base filename but a different extension (.txt instead of .bin). It 
-reads the label file line by line, splitting each line into a list of labels, and returns a list of these label 
-lists. If the label file does not exist, it prints a warning.
-
-3. `load_data_from_files(data_path, label_path, files, load_labels_flag=True)`: Iterates over file names to load 
-binary point cloud data, converting each point's 7 features (4 bytes each) into a numpy array. If `load_labels_flag` 
-is True, corresponding labels are loaded. Returns point cloud data as numpy arrays and, optionally, labels as lists.
-
-4. `load_dataset(data_path, label_path, indices_path, load_labels_flag=True)`: Prepares and loads the dataset by 
-verifying the data directory's existence, reading file indices, and constructing file names to load point cloud data 
-and, optionally, labels via `load_data_from_files`. Returns the loaded data and labels.
-
-The script includes an example usage section that demonstrates how to load both training and testing datasets from 
-specified paths. It distinguishes between training and testing data by using the `load_labels_flag` parameter to 
-control whether labels should be loaded (true for training data, false for testing data, since the test data does not 
-have associated labels).
-"""
+NUM_FEATURES = 7
+BYTES_PER_FEATURE = 4
+DATA_POINT_SIZE = NUM_FEATURES * BYTES_PER_FEATURE
 
 
 def load_indices(indices_path):
+    """
+    Load a list of indices from ImageSets/train.txt and test.txt.
+
+    Parameters:
+    indices_path (str): The file path containing the indices.
+
+    Returns:
+    list[str]: A list of indices, each stripped of leading/trailing whitespace.
+    """
     with open(indices_path, 'r') as file:
-        indices = [line.strip() for line in file]
-    return indices
+        return [line.strip() for line in file]
 
 
-def load_labels(label_path, file_name):
-    label_file_path = os.path.join(label_path, file_name.replace('.bin', '.txt'))
+def load_labels(label_path, frame_number):
+    """
+    Load labels from lidar/training/label_2/specified file corresponding to a .bin frame number, if it exists.
+
+    Parameters:
+    label_path (str): The directory path where label files are stored.
+    frame_number (str): The frame number corresponding to the label file.
+
+    Returns: list[list[str]]: A list of labels, where each label is a list of string elements parsed from a single
+    line in the label file.
+    """
+    label_file_path = os.path.join(label_path, frame_number.replace('.bin', '.txt'))
     labels = []
+
     if os.path.exists(label_file_path):
         with open(label_file_path, 'r') as file:
-            for line in file:
-                # datawrapper = DataWrapper(line.strip().split(' '))
-                labels.append(line.strip().split(' '))
-        print(f"Loaded {len(labels)} labels for {file_name}")  # Print number of labels loaded for each file
+            labels = [line.strip().split(' ') for line in file]
+        print(f"Loaded {len(labels)} labels for {frame_number}")
     else:
         print(f"Label file {label_file_path} not found.")
     return labels
 
 
-#
-# class DataWrapper:
-#     def __int__(self, data_list: list):
-#         self._data_list = data_list
-#
-#     def get_category(self):
-#         self._data_list[0]
+def load_binary_data(file_path):
+    """
+    Reads binary point cloud data from a specified file.
+
+    Parameters:
+    file_path (str): The file path to read the binary data from.
+
+    Returns:
+    bytes: The raw binary data read from the file.
+    """
+    with open(file_path, 'rb') as file:
+        return file.read()
 
 
-def load_data_from_files(data_path, label_path, files, load_labels_flag=True):
-    data_list = []
-    labels_list = []
-    labels_loaded_count = 0  # Initialize counter for files with labels loaded
-    for file_name in files:
-        file_path = os.path.join(data_path, file_name)
-        with open(file_path, 'rb') as f:
-            data = f.read()
-            # datawrapper
-            num_points = len(data) // 28  # Assuming 7 features x 4 bytes each
-            if num_points > 0:
-                try:
-                    points = np.array(struct.unpack(f'{num_points * 7}f', data)).reshape((num_points, 7))
-                    data_list.append(points)
-                    if load_labels_flag:
-                        labels = load_labels(label_path, file_name)
-                        labels_list.append(labels)
-                        if labels:  # Check if any labels were loaded
-                            labels_loaded_count += 1
-                except struct.error as e:
-                    print(f"Error unpacking {file_name}: {e}")
-            else:
-                print(f"No points found in {file_name}.")
+def unpack_data(pointcloud, num_points):
+    """
+    Unpack binary raw point cloud data into a structured numpy array.
+
+    Parameters:
+    pointcloud (bytes): The raw binary point cloud data.
+    num_points (int): The number of points to be unpacked from the pointcloud data.
+
+    Returns:
+    np.ndarray: A numpy array containing the unpacked point cloud data, or None if an error occurs during unpacking.
+    """
+    try:
+        points = np.array(struct.unpack(f'{num_points * NUM_FEATURES}f', pointcloud)).reshape(
+            (num_points, NUM_FEATURES))
+        return points
+    except struct.error as e:
+        print(f"Error unpacking data: {e}")
+        return None
+
+
+def load_data_and_labels(data_path, label_path, frame_number, load_labels_flag):
+    """
+    Loads point cloud data and optionally labels for a given frame.
+
+    Parameters:
+    data_path (str): The directory path where point cloud data files are stored.
+    label_path (str): The directory path where label files are stored.
+    frame_number (str): The frame number to load the binary data and labels for.
+    load_labels_flag (bool): A flag indicating whether to load labels along with the data.
+
+    Returns: tuple: A tuple containing two lists, the first is a list of numpy arrays of point cloud data,
+    and the second is a list of labels (empty if load_labels_flag is False).
+    """
+    file_path = os.path.join(data_path, frame_number)
+    pointcloud = load_binary_data(file_path)
+    num_points = len(pointcloud) // DATA_POINT_SIZE
+
+    pointcloud_point_list, labels_list = [], []
+
+    if num_points > 0:
+        points = unpack_data(pointcloud, num_points)
+        if points is not None:
+            pointcloud_point_list.append(points)
+            if load_labels_flag:
+                labels = load_labels(label_path, frame_number)
+                labels_list.append(labels)
+    else:
+        print(f"No points found in {frame_number}.")
+
+    return pointcloud_point_list, labels_list
+
+
+def load_data_from_files(data_path, label_path, files, load_labels_flag):
+    """
+    Loads point cloud data and optionally labels from a list of frame numbers.
+
+    Parameters:
+    data_path (str): The directory path where point cloud data files are stored.
+    label_path (str): The directory path where label files are stored.
+    files (list[str]): A list of frame numbers to load data and labels for.
+    load_labels_flag (bool): A flag indicating whether to load labels along with the data.
+
+    Returns: tuple: A tuple containing two lists, the first is a list of numpy arrays of point cloud data,
+    and the second is a list of labels (empty if load_labels_flag is False).
+    """
+    data_list, labels_list = [], []
+    labels_loaded_count = 0
+
+    for frame_number in files:
+        data, labels = load_data_and_labels(data_path, label_path, frame_number, load_labels_flag)
+        if data:
+            data_list.extend(data)
+            if labels:
+                labels_list.extend(labels)
+                labels_loaded_count += 1
+
     if load_labels_flag:
-        print(f"Labels were loaded for {labels_loaded_count} out of {len(files)} files.")  # Summary of labels loaded
+        print(f"Successfully loaded {labels_loaded_count} labels for {len(files)} .bin files.")
+
     return data_list, labels_list if load_labels_flag else data_list
 
 
 def load_dataset(data_path, label_path, indices_path, load_labels_flag=True):
+    """
+    Loads a dataset based on indices and specified paths, including point cloud data and optionally labels.
+
+    Parameters:
+    data_path (str): The directory path where point cloud data files are stored.
+    label_path (str): The directory path where label files are stored.
+    indices_path (str): The file path containing the indices of frames to load.
+    load_labels_flag (bool): A flag indicating whether to load labels along with the data.
+
+    Returns: tuple: A tuple containing two lists, the first is a list of numpy arrays of point cloud data,
+    and the second is a list of labels (empty if load_labels_flag is False).
+    """
     if not os.path.exists(data_path):
         print(f"Directory {data_path} does not exist.")
         return [], []
 
     indices = load_indices(indices_path)
-
     file_list = [f"{idx}.bin" for idx in indices if os.path.exists(os.path.join(data_path, f"{idx}.bin"))]
 
     return load_data_from_files(data_path, label_path, file_list, load_labels_flag)
 
 
 def main():
-    # Instantiate the Paths class to get directory paths
-    paths = Paths()
+    """
+    Main function to load training and testing point cloud data and optionally labels, then print basic information
+    about the loaded data.
+    """
+    data_paths = DataPaths()
 
     print("Loading training data...")
-    train_data, train_labels = load_dataset(paths.data_path, paths.label_path, paths.train_indices_path,
-                                            load_labels_flag=True)
+    train_data, train_labels = load_dataset(data_paths.data_path, data_paths.label_path, data_paths.train_indices_path)
     if train_data:
         print(f"Number of points in the first training file: {len(train_data[0])}")
 
     print("\nLoading testing data...")
-    test_data, test_labels = load_dataset(paths.data_path, paths.label_path, paths.test_indices_path,
+    test_data, test_labels = load_dataset(data_paths.data_path, data_paths.label_path, data_paths.test_indices_path,
                                           load_labels_flag=False)
     if test_data:
+        print("Successfully loaded test data")
         print(f"Number of points in the first testing file: {len(test_data[0])}")
 
 

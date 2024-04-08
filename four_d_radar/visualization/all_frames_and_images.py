@@ -4,7 +4,7 @@ import cv2
 import os
 
 from four_d_radar.utils.data_loader import load_dataset
-from four_d_radar.utils.paths import Paths
+from four_d_radar.utils.data_paths import DataPaths
 
 
 class RadarPointCloudVisualizer:
@@ -80,12 +80,12 @@ class RadarPointCloudVisualizer:
 
 
 def main():
-    paths = Paths()
-    train_data, train_labels = load_dataset(paths.data_path, paths.label_path, paths.train_indices_path,
+    data_paths = DataPaths()
+    train_data, train_labels = load_dataset(data_paths.data_path, data_paths.label_path, data_paths.train_indices_path,
                                             load_labels_flag=True)
 
     if train_data:
-        visualizer = RadarPointCloudVisualizer(train_data, train_labels, paths.image_path)
+        visualizer = RadarPointCloudVisualizer(train_data, train_labels, data_paths.image_path)
         visualizer.visualize()
     else:
         print("No training data to visualize.")
