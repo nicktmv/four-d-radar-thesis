@@ -3,6 +3,7 @@ import numpy as np
 import struct
 from four_d_radar.utils.data_paths import DataPaths
 
+
 NUM_FEATURES = 7
 BYTES_PER_FEATURE = 4
 DATA_POINT_SIZE = NUM_FEATURES * BYTES_PER_FEATURE
@@ -168,12 +169,22 @@ def run_data_loader(root_dir):
     data_paths = DataPaths(root_dir)
 
     print("Loading training data...")
-    train_data, train_labels = load_dataset(data_paths, data_paths.train_indices_file_path, load_labels_flag=True)
+    train_data, train_labels = load_dataset(
+        pointcloud_file_path=data_paths.pointcloud_file_path,
+        label_path=data_paths.label_file_path,
+        indices_path=data_paths.train_indices_file_path,
+        load_labels_flag=True
+    )
     if train_data:
         print(f"Number of points in the first training file: {len(train_data[0])}")
 
     print("\nLoading testing data...")
-    test_data, _ = load_dataset(data_paths, data_paths.test_indices_file_path, load_labels_flag=False)
+    test_data, _ = load_dataset(
+        pointcloud_file_path=data_paths.pointcloud_file_path,
+        label_path=data_paths.label_file_path,
+        indices_path=data_paths.test_indices_file_path,
+        load_labels_flag=False
+    )
     if test_data:
         print("Successfully loaded test data")
         print(f"Number of points in the first testing file: {len(test_data[0])}")
