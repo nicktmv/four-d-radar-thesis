@@ -164,25 +164,21 @@ def load_dataset(pointcloud_file_path, label_path, indices_path, load_labels_fla
     return load_data_from_files(pointcloud_file_path, label_path, file_list, load_labels_flag)
 
 
-def main():
-    """
-    Main function to load training and testing point cloud data and optionally labels, then print basic information
-    about the loaded data.
-    """
-    data_paths = DataPaths()
+def run_data_loader(root_dir):
+    data_paths = DataPaths(root_dir)
 
     print("Loading training data...")
-    train_data, train_labels = load_dataset(data_paths.data_path, data_paths.label_path, data_paths.train_indices_path)
+    train_data, train_labels = load_dataset(data_paths, data_paths.train_indices_file_path, load_labels_flag=True)
     if train_data:
         print(f"Number of points in the first training file: {len(train_data[0])}")
 
     print("\nLoading testing data...")
-    test_data, test_labels = load_dataset(data_paths.data_path, data_paths.label_path, data_paths.test_indices_path,
-                                          load_labels_flag=False)
+    test_data, _ = load_dataset(data_paths, data_paths.test_indices_file_path, load_labels_flag=False)
     if test_data:
         print("Successfully loaded test data")
         print(f"Number of points in the first testing file: {len(test_data[0])}")
 
 
 if __name__ == "__main__":
-    main()
+    root_dir = "Your root directory here"
+    run_data_loader(root_dir)
