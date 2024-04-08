@@ -1,10 +1,10 @@
-from four_d_radar.utils.data_loader import main as data_loader_main
+from four_d_radar.utils.data_paths import DataPaths  # Ensure you import DataPaths correctly from wherever it's defined
 
 
 def main():
-    print("Starting the main function of the project...")
-    data_loader_main()  # This calls the main function of your data loader script
-    print("Main function of the project has finished.")
+    root_dir = "D:/four-d-radar-thesis"
+    paths = DataPaths(root_dir)
+    print(paths.data_path)
 
 
 if __name__ == "__main__":
