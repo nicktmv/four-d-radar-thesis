@@ -3,6 +3,46 @@
 ## Aim
 To explore the theoretical methodology of achieving object detection from raw 4D radar point clouds
 
+## Dataset Preparation
+
+First, please request and download the View of Delft (VoD) dataset from the [VoD official website](https://tudelft-iv.github.io/view-of-delft-dataset/).
+
+Please also obtain the tracking annotation from [VoD Github](https://github.com/tudelft-iv/view-of-delft-dataset/blob/main/docs/ANNOTATION.md). Unzip all the `.txt` tracking annotation files into the path: `view_of_delft_PUBLIC/lidar/training/label_2_tracking/`
+
+The dataset folder structure should look like this:
+
+```
+view_of_delft_PUBLIC/
+├── lidar
+│   ├── ImageSets
+│   ├── testing
+│   └── training
+│       ├── calib
+│       ├── image_2
+│       ├── label_2
+│           ├── 00000.txt
+│           ├── 00001.txt
+│           ├── ...
+│       ├── label_2_tracking
+│           ├── 00000.txt
+│           ├── 00001.txt
+│           ├── ...
+│       ├── pose
+│       └── velodyne
+├── radar
+│   ├── testing
+│   └── training
+│       ├── calib
+│       └── velodyne
+├── radar_3frames
+│   ├── testing
+│   └── training
+│       └── velodyne
+└── radar_5frames
+    ├── testing
+    └── training
+        └── velodyne
+```
 ## Requirements
 
 * [Python 3.11](https://www.python.org/downloads/) - Python is a programming language that lets you work quickly and integrate systems more effectively.
@@ -23,7 +63,7 @@ To explore the theoretical methodology of achieving object detection from raw 4D
 * [gitignore.io](https://www.toptal.com/developers/gitignore) - Create useful .gitignore files for your project
 * [plantuml.com](https://plantuml.com/) - Open-source tool that uses simple textual descriptions to draw UML diagrams.
 
-## Run Application
+## 🚀 Getting Started
 
 1. Clone the repository
 
@@ -44,5 +84,4 @@ To explore the theoretical methodology of achieving object detection from raw 4D
    conda install --file requirements.txt
    ```
 
-3. Download Dataset
-   * Full VOD Dataset (13.6GB): <https://drive.google.com/drive/folders/1e8yfRFIFUTUvcLvqPHAYqFuV47eL1as4?usp=sharing>
+
