@@ -7,7 +7,7 @@ To explore the theoretical methodology of achieving object detection from raw 4D
 
 First, please request and download the View of Delft (VoD) dataset from the [VoD official website](https://tudelft-iv.github.io/view-of-delft-dataset/).
 
-Please also obtain the tracking annotation from [VoD Github](https://github.com/tudelft-iv/view-of-delft-dataset/blob/main/docs/ANNOTATION.md). Unzip all the `.txt` tracking annotation files into the path: `view_of_delft_PUBLIC/lidar/training/label_2_tracking/`
+Please also obtain the tracking annotation from [VoD GitHub](https://github.com/tudelft-iv/view-of-delft-dataset/blob/main/docs/ANNOTATION.md). Unzip all the `.txt` tracking annotation files into the path: `view_of_delft_PUBLIC/lidar/training/label_2_tracking/`
 
 The dataset folder structure should look like this:
 
@@ -59,7 +59,7 @@ view_of_delft_PUBLIC/
 
 ### Online Tools
 
-* [GitHub](https://www.github.com) is a web-based hosting service for version control using Git. It offers all of the distributed version control and source code management (SCM) functionality of Git as well as adding its features.
+* [GitHub](https://www.github.com) is a web-based hosting service for version control using Git. It offers all the distributed version control and source code management (SCM) functionality of Git as well as adding its features.
 * [gitignore.io](https://www.toptal.com/developers/gitignore) - Create useful .gitignore files for your project
 * [plantuml.com](https://plantuml.com/) - Open-source tool that uses simple textual descriptions to draw UML diagrams.
 
