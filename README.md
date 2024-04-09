@@ -6,8 +6,9 @@ To explore the theoretical methodology of achieving object detection from raw 4D
 ## Dataset Preparation
 
 First, please request and download the View of Delft (VoD) dataset from the [VoD official website](https://tudelft-iv.github.io/view-of-delft-dataset/).
+There will be form to request access
 
-Please also obtain the tracking annotation from [VoD GitHub](https://github.com/tudelft-iv/view-of-delft-dataset/blob/main/docs/ANNOTATION.md). Unzip all the `.txt` tracking annotation files into the path: `view_of_delft_PUBLIC/lidar/training/label_2_tracking/`
+Please also obtain the tracking annotation from [VoD GitHub](https://tudelft-iv.github.io/view-of-delft-dataset/docs/ANNOTATION.html). Unzip all the `.txt` tracking annotation files into the path: `view_of_delft_PUBLIC/lidar/training/label_2_tracking/`
 
 The dataset folder structure should look like this:
 
