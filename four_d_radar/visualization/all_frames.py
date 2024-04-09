@@ -43,12 +43,18 @@ class RadarPointCloudVisualizer:
 
 
 def main():
-    data_paths = DataPaths()
+
+    root_dir = "D:/four-d-radar-thesis"
+    data_paths = DataPaths(root_dir)
 
     # Load the dataset
     print("Loading training data...")
-    train_data, train_labels = load_dataset(data_paths.data_path, data_paths.label_path, data_paths.train_indices_path,
-                                            load_labels_flag=True)
+    train_data, train_labels = load_dataset(
+        point_cloud_file_path=data_paths.point_cloud_file_path,
+        label_path=data_paths.label_file_path,
+        indices_path=data_paths.train_indices_file_path,
+        load_labels_flag=True
+    )
 
     # Initialize the visualizer with the training data
     if train_data:
