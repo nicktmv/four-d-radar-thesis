@@ -9,7 +9,7 @@ DATA_POINT_SIZE = NUM_FEATURES * BYTES_PER_FEATURE
 NUM_POINTS_TO_CHECK = 5
 
 
-def check_pointcloud_file(file_path: Path):
+def check_point_cloud_file(file_path: Path):
     """
     Reads and checks a point cloud file's structure by validating the size of the data points.
 
@@ -58,10 +58,10 @@ def main():
 
     # Specifying the file to check relative to the point cloud directory
     relative_file_path = '00770.bin'
-    full_file_path = data_paths.pointcloud_file_path / relative_file_path
+    full_file_path = data_paths.point_cloud_file_path / relative_file_path
 
     # Check the point cloud file
-    check_pointcloud_file(full_file_path)
+    check_point_cloud_file(full_file_path)
 
 
 if __name__ == "__main__":

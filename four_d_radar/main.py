@@ -8,7 +8,7 @@ def main():
     # Initialize the DataPaths class with the root directory
     paths = DataPaths(root_dir)
 
-    print(paths.pointcloud_file_path)
+    print(paths.point_cloud_file_path)
 
     run_data_loader(root_dir)
 

@@ -60,19 +60,19 @@ def load_binary_data(file_path):
         return file.read()
 
 
-def unpack_data(pointcloud, num_points):
+def unpack_data(point_cloud, num_points):
     """
     Unpack binary raw point cloud data into a structured numpy array.
 
     Parameters:
-    pointcloud (bytes): The raw binary point cloud data.
-    num_points (int): The number of points to be unpacked from the pointcloud data.
+    point_cloud (bytes): The raw binary point cloud data.
+    num_points (int): The number of points to be unpacked from the point_cloud data.
 
     Returns:
     np.ndarray: A numpy array containing the unpacked point cloud data, or None if an error occurs during unpacking.
     """
     try:
-        points = np.array(struct.unpack(f'{num_points * NUM_FEATURES}f', pointcloud)).reshape(
+        points = np.array(struct.unpack(f'{num_points * NUM_FEATURES}f', point_cloud)).reshape(
             (num_points, NUM_FEATURES))
         return points
     except struct.error as e:
@@ -80,12 +80,12 @@ def unpack_data(pointcloud, num_points):
         return None
 
 
-def load_data_and_labels(pointcloud_file_path, label_path, frame_number, load_labels_flag):
+def load_data_and_labels(point_cloud_file_path, label_path, frame_number, load_labels_flag):
     """
     Loads point cloud data and optionally labels for a given frame.
 
     Parameters:
-    pointcloud_file_path (str): The directory path where point cloud data files are stored.
+    point_cloud_file_path (str): The directory path where point cloud data files are stored.
     label_path (str): The directory path where label files are stored.
     frame_number (str): The frame number to load the binary data and labels for.
     load_labels_flag (bool): A flag indicating whether to load labels along with the data.
@@ -93,31 +93,31 @@ def load_data_and_labels(pointcloud_file_path, label_path, frame_number, load_la
     Returns: tuple: A tuple containing two lists, the first is a list of numpy arrays of point cloud data,
     and the second is a list of labels (empty if load_labels_flag is False).
     """
-    file_path = os.path.join(pointcloud_file_path, frame_number)
-    pointcloud = load_binary_data(file_path)
-    num_points = len(pointcloud) // DATA_POINT_SIZE
+    file_path = os.path.join(point_cloud_file_path, frame_number)
+    point_cloud = load_binary_data(file_path)
+    num_points = len(point_cloud) // DATA_POINT_SIZE
 
-    pointcloud_point_list, labels_list = [], []
+    point_cloud_point_list, labels_list = [], []
 
     if num_points > 0:
-        points = unpack_data(pointcloud, num_points)
+        points = unpack_data(point_cloud, num_points)
         if points is not None:
-            pointcloud_point_list.append(points)
+            point_cloud_point_list.append(points)
             if load_labels_flag:
                 labels = load_labels(label_path, frame_number)
                 labels_list.append(labels)
     else:
         print(f"No points found in {frame_number}.")
 
-    return pointcloud_point_list, labels_list
+    return point_cloud_point_list, labels_list
 
 
-def load_data_from_files(pointcloud_file_path, label_path, files, load_labels_flag):
+def load_data_from_files(point_cloud_file_path, label_path, files, load_labels_flag):
     """
     Loads point cloud data and optionally labels from a list of frame numbers.
 
     Parameters:
-    pointcloud_file_path (str): The directory path where point cloud data files are stored.
+    point_cloud_file_path (str): The directory path where point cloud data files are stored.
     label_path (str): The directory path where label files are stored.
     files (list[str]): A list of frame numbers to load data and labels for.
     load_labels_flag (bool): A flag indicating whether to load labels along with the data.
@@ -129,7 +129,7 @@ def load_data_from_files(pointcloud_file_path, label_path, files, load_labels_fl
     labels_loaded_count = 0
 
     for frame_number in files:
-        data, labels = load_data_and_labels(pointcloud_file_path, label_path, frame_number, load_labels_flag)
+        data, labels = load_data_and_labels(point_cloud_file_path, label_path, frame_number, load_labels_flag)
         if data:
             data_list.extend(data)
             if labels:
@@ -142,12 +142,12 @@ def load_data_from_files(pointcloud_file_path, label_path, files, load_labels_fl
     return data_list, labels_list if load_labels_flag else data_list
 
 
-def load_dataset(pointcloud_file_path, label_path, indices_path, load_labels_flag=True):
+def load_dataset(point_cloud_file_path, label_path, indices_path, load_labels_flag=True):
     """
     Loads a dataset based on indices and specified paths, including point cloud data and optionally labels.
 
     Parameters:
-    pointcloud_file_path (str): The directory path where point cloud data files are stored.
+    point_cloud_file_path (str): The directory path where point cloud data files are stored.
     label_path (str): The directory path where label files are stored.
     indices_path (str): The file path containing the indices of frames to load.
     load_labels_flag (bool): A flag indicating whether to load labels along with the data.
@@ -155,14 +155,14 @@ def load_dataset(pointcloud_file_path, label_path, indices_path, load_labels_fla
     Returns: tuple: A tuple containing two lists, the first is a list of numpy arrays of point cloud data,
     and the second is a list of labels (empty if load_labels_flag is False).
     """
-    if not os.path.exists(pointcloud_file_path):
-        print(f"Directory {pointcloud_file_path} does not exist.")
+    if not os.path.exists(point_cloud_file_path):
+        print(f"Directory {point_cloud_file_path} does not exist.")
         return [], []
 
     indices = load_indices(indices_path)
-    file_list = [f"{idx}.bin" for idx in indices if os.path.exists(os.path.join(pointcloud_file_path, f"{idx}.bin"))]
+    file_list = [f"{idx}.bin" for idx in indices if os.path.exists(os.path.join(point_cloud_file_path, f"{idx}.bin"))]
 
-    return load_data_from_files(pointcloud_file_path, label_path, file_list, load_labels_flag)
+    return load_data_from_files(point_cloud_file_path, label_path, file_list, load_labels_flag)
 
 
 def run_data_loader(root_dir):
@@ -170,7 +170,7 @@ def run_data_loader(root_dir):
 
     print("Loading training data...")
     train_data, train_labels = load_dataset(
-        pointcloud_file_path=data_paths.pointcloud_file_path,
+        point_cloud_file_path=data_paths.point_cloud_file_path,
         label_path=data_paths.label_file_path,
         indices_path=data_paths.train_indices_file_path,
         load_labels_flag=True
@@ -180,7 +180,7 @@ def run_data_loader(root_dir):
 
     print("\nLoading testing data...")
     test_data, _ = load_dataset(
-        pointcloud_file_path=data_paths.pointcloud_file_path,
+        point_cloud_file_path=data_paths.point_cloud_file_path,
         label_path=data_paths.label_file_path,
         indices_path=data_paths.test_indices_file_path,
         load_labels_flag=False
