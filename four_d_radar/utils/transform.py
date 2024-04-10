@@ -1,4 +1,7 @@
 import numpy as np
+from vod.configuration import KittiLocations
+
+Kitt_locations = KittiLocations()
 
 
 def homogeneous_coordinates(points):
