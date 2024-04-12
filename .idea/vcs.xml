@@ -2,5 +2,9 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AB3DMOT" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/RaTrack" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Xinshuo_PyToolbox" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/view-of-delft-dataset" vcs="Git" />
   </component>
 </project>
