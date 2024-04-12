@@ -4,3 +4,4 @@ opencv_python==4.9.0.80
 opencv_python_headless==4.9.0.80
 vod-tudelft==1.0.3
 ./libs/xinshuo_py_toolbox-1.0.0-py3-none-any.whl
+./libs/ab3dmot-1.0.0-py3-none-any.whl

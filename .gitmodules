@@ -1,3 +1,6 @@
 [submodule "Xinshuo_PyToolbox"]
 	path = Xinshuo_PyToolbox
 	url = https://github.com/nicktmv/Xinshuo_PyToolbox
+[submodule "AB3DMOT"]
+	path = AB3DMOT
+	url = https://github.com/nicktmv/AB3DMOT.git
