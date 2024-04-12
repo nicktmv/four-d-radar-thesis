@@ -4,3 +4,6 @@
 [submodule "AB3DMOT"]
 	path = AB3DMOT
 	url = https://github.com/nicktmv/AB3DMOT.git
+[submodule "RaTrack"]
+	path = RaTrack
+	url = https://github.com/nicktmv/RaTrack.git
