@@ -46,7 +46,7 @@ view_of_delft_PUBLIC/
 ```
 ## Requirements
 
-* [Python 3.11](https://www.python.org/downloads/) - Python is a programming language that lets you work quickly and integrate systems more effectively.
+* [Python &ge; 3.8](https://www.python.org/downloads/) - Python is a programming language that lets you work quickly and integrate systems more effectively.
 
 ### IDEs
 

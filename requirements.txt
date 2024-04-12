@@ -1,5 +1,6 @@
-numpy==1.21.6
-numpy==1.16.4
-open3d==0.15.1
-opencv_python==4.2.0.32
+numpy==1.24.3
+open3d==0.18.0
+opencv_python==4.9.0.80
 opencv_python_headless==4.9.0.80
+vod-tudelft==1.0.3
+./libs/xinshuo_py_toolbox-1.0.0-py3-none-any.whl
