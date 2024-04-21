@@ -2,7 +2,6 @@ import open3d as o3d
 import numpy as np
 
 
-# TODO : Fix paths not being found
 
 def read_bin_file(file_path):
     data = np.fromfile(file_path, dtype=np.float32)

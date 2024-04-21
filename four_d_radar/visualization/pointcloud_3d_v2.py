@@ -4,7 +4,6 @@ import numpy as np
 from four_d_radar.utils.data_loader import load_dataset
 
 
-# TODO : Fix paths not being found along with other errors
 
 def read_label_file(file_path):
     labels = []
