@@ -4,5 +4,6 @@
         "numba",
         "optim",
         "xlabel"
-    ]
+    ],
+    "python.analysis.typeCheckingMode": "basic"
 }
