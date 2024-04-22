@@ -84,6 +84,6 @@ view_of_delft_PUBLIC/
    ```bash
    conda install --file requirements.txt
    ```
-![Alt text for the GIF](assets/4d-radar-track-predictions.gif)
+![Alt text for the GIF](https://github.com/nicktmv/four-d-radar-thesis/blob/refactor/docs/images/4d-radar-track-predictions.gif)
 
 
