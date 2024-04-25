@@ -84,9 +84,9 @@ view_of_delft_PUBLIC/
 3. NVIDIA GeForce GTX 1660 Ti
 
 ## Getting Started 🚀
-Please ensure you running with an Nvidia GPU (at least 2GB VRAM).
+<mark> Please ensure you running with an Nvidia GPU (at least 2GB VRAM).</mark>
 
-CUDA 11.8 is required for pointnet2 dependencies. Any other configuration is not guaranteed to work.
+<mark>CUDA 11.8 is required for pointnet2 dependencies. Any other configuration is not guaranteed to work.</mark>
 
 
 1. Clone the repository
