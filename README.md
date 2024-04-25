@@ -1,7 +1,20 @@
-# 4d-radar-fyp-thesis
+<p align="center">
+  <strong>
+    <h1 align="center">Object Detection & Tracking with 4D Radar Point Clouds</h1>
+  </strong>
+</p>
+<p align="center">
+   Nick Timaskovs K00260158
+   <br>
+  <a href='https://github.com/nicktmv' target='_blank'>GitHub nicktmv</a>&emsp;
+</p>
+<p align="center">
+  <br>
+A Final Year Project submitted to the Technological University of the Shannon in partial fulfilment of the Bachelor of Science (Honours) in Software Development degree requirements.</p>
+
 
 ## Aim
-To explore the theoretical methodology of achieving object detection from raw 4D radar point clouds
+To achieve object detection & tracking in 4D radar point clouds.
 
 ## Dataset Preparation
 
@@ -51,6 +64,7 @@ view_of_delft_PUBLIC/
 ### IDEs
 
 * [PyCharm](https://www.jetbrains.com/pycharm/) - The Python IDE for data science and web development.
+* [Jupyter Notebook](https://jupyter.org/) - An open-source web application that allows you to create and share documents that contain live code, equations, visualizations, and narrative text.
 
 ### Source Code Management
 
@@ -64,7 +78,16 @@ view_of_delft_PUBLIC/
 * [gitignore.io](https://www.toptal.com/developers/gitignore) - Create useful .gitignore files for your project
 * [plantuml.com](https://plantuml.com/) - Open-source tool that uses simple textual descriptions to draw UML diagrams.
 
-## 🚀 Getting Started
+## Machine Spec Used 🛠️
+1. Intel(R) Core(TM) i7-9750H CPU
+2. 16.0 GB RAM
+3. NVIDIA GeForce GTX 1660 Ti
+
+## Getting Started 🚀
+Please ensure you running with an Nvidia GPU (at least 2GB VRAM).
+
+CUDA 11.8 is required for pointnet2 dependencies. Any other configuration is not guaranteed to work.
+
 
 1. Clone the repository
 
@@ -84,6 +107,25 @@ view_of_delft_PUBLIC/
    ```bash
    conda install --file requirements.txt
    ```
+## Training the model
+
+To train the model, please run in the terminal
+
+```bash
+python python main.py --config configs.yaml
+```
+This will use the `config.yaml` configuration file to train the model.
+
+## Evaluation
+To evaluate the trained model, please run:
+```bash
+python python main.py --config configs_eval-sw-test.yaml
+```
+The `configs_eval.yaml` is located in `RaTrack/checkpoints/track4d_radar/models`.
+
+You can specify the exact model you want to evaluate by changing the `model_path` in the `configs_eval.yaml` file.
+
+#
 ![Alt text for the GIF](https://github.com/nicktmv/four-d-radar-thesis/blob/refactor/docs/images/4d-radar-track-predictions.gif)
 
 
