@@ -17,7 +17,42 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\RaTrack\artifacts\metrics\train-scene-flow-metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\RaTrack\artifacts\metrics\train-segmentation-metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\RaTrack\artifacts\train\train-scene-flow-metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\RaTrack\artifacts\train\train-segmentation-metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\RaTrack\checkpoints\track4d_radar\results\segmentation-metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\docs\24_epoch_training_results.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
