@@ -107,6 +107,14 @@ view_of_delft_PUBLIC/
    ```bash
    conda install --file requirements.txt
    ```
+   
+3. Install the `pointnet2` package
+
+    ```bash
+    cd RaTrack\lib
+    python setup.py install
+    ```
+
 ## Training the model
 
 To train the model, please run in the terminal
