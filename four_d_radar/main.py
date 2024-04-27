@@ -1,16 +1,17 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from four_d_radar.utils.data_paths import DataPaths
+from four_d_radar.utils.data_loader import run_data_loader
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def main():
+    root_dir = "D:/four-d-radar-thesis"
+
+    # Initialize the DataPaths class with the root directory
+    paths = DataPaths(root_dir)
+
+    print(paths.point_cloud_file_path)
+
+    run_data_loader(root_dir)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    main()

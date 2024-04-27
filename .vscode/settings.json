@@ -1,0 +1,9 @@
+{
+    "cSpell.words": [
+        "cprint",
+        "numba",
+        "optim",
+        "xlabel"
+    ],
+    "python.analysis.typeCheckingMode": "basic"
+}

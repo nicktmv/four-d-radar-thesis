@@ -1,0 +1,6 @@
+* linguist-vendored
+*.py linguist-vendored=false
+
+### Using Microsoft Word with git
+### https://blog.front-matter.io/posts/using-microsoft-word-with-git
+*.docx diff=pandoc

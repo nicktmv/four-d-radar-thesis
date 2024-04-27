@@ -1,0 +1,12 @@
+[submodule "Xinshuo_PyToolbox"]
+	path = Xinshuo_PyToolbox
+	url = https://github.com/nicktmv/Xinshuo_PyToolbox
+[submodule "AB3DMOT"]
+	path = AB3DMOT
+	url = https://github.com/nicktmv/AB3DMOT.git
+[submodule "RaTrack"]
+	path = RaTrack
+	url = https://github.com/nicktmv/RaTrack.git
+[submodule "view-of-delft-dataset"]
+	path = view-of-delft-dataset
+	url = https://github.com/nicktmv/view-of-delft-dataset

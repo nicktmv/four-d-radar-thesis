@@ -482,7 +482,7 @@ BenchmarkDotNet.Artifacts/
 # .NET Core
 project.lock.json
 project.fragment.lock.json
-artifacts/
+RaTrack/artifacts/
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
@@ -802,7 +802,12 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
+
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,linux,macos,libreoffice,microsoftoffice,pycharm,visualstudio,visualstudiocode,python,jupyternotebooks
+
+# Custom
+!libs/pointnet2_cuda.cp311-win_amd64.pyd
+
