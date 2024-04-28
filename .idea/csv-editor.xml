@@ -3,7 +3,7 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="\RaTrack\artifacts\eval\eval-flow-metrics.csv">
+        <entry key="\RaTrack\artifacts\eval\eval-scene-flow-metrics.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -11,20 +11,6 @@
           </value>
         </entry>
         <entry key="\RaTrack\artifacts\eval\eval-segmentation-metrics.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\RaTrack\artifacts\metrics\train-scene-flow-metrics.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\RaTrack\artifacts\metrics\train-segmentation-metrics.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -45,7 +31,14 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\RaTrack\checkpoints\track4d_radar\results\segmentation-metrics.csv">
+        <entry key="\docs\10_epoch_training_results.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\docs\10_epoch_training_results_V2.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -53,13 +46,6 @@
           </value>
         </entry>
         <entry key="\docs\24_epoch_training_results.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\docs\epoch_training_results.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
