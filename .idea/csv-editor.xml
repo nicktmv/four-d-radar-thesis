@@ -38,6 +38,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\docs\10_epoch_training_results_V2.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\docs\24_epoch_training_results.csv">
           <value>
             <Attribute>
