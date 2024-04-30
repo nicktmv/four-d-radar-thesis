@@ -31,21 +31,35 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\docs\10_epoch_training_results.csv">
+        <entry key="\docs\results\8_epoch_eval_scene_flow.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\docs\10_epoch_training_results_V2.csv">
+        <entry key="\docs\results\8_epoch_eval_segmentation.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\docs\24_epoch_training_results.csv">
+        <entry key="\docs\results\8_epoch_training_results.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\docs\results\scene_flow_comparison.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\docs\results\segmentation_comparison.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
