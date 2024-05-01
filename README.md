@@ -111,7 +111,7 @@ The following tools are recommended for development and testing purposes:
    conda install --file requirements.txt
    ```
 
-3. Install the `pointnet2` package. It is compiled from the source code in the [RaTrack/lib](RaTrack/lib) directory.
+3. Install the `pointnet2` package. It is compiled from the source code in the `WRaTrack/lib` directory.
 
     ```bash
     cd RaTrack\lib
@@ -140,7 +140,7 @@ To evaluate the trained model, please run:
 python main.py --config configs_eval-sw-test.yaml
 ```
 
-The `configs_eval.yaml` is located in [RaTrack/checkpoints/track4d_radar/models](RaTrack/checkpoints/track4d_radar/models).
+The `configs_eval.yaml` is located in `RaTrack/checkpoints/track4d_radar/models`.
 
 You can specify the exact model you want to evaluate by changing the `model_path` in the `configs_eval.yaml` file.
 

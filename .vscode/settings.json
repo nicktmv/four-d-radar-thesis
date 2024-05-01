@@ -3,6 +3,7 @@
         "cprint",
         "numba",
         "optim",
+        "Timaskovs",
         "xlabel"
     ],
     "python.analysis.typeCheckingMode": "basic"
