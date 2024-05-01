@@ -52,6 +52,27 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\docs\results\epoch-10\10_epoch_loss_run2.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\docs\results\epoch-10\10_epoch_scene_flow_run2.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\docs\results\epoch-8\8_epoch_segmentation_run2.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\docs\results\scene_flow_comparison.csv">
           <value>
             <Attribute>
